@@ -12,7 +12,7 @@ import java.util.Random;
 public class Apple {
     private Possition possition;
 
-    public void respawn(List<Possition> freeFields) {
+    public void spawn(List<Possition> freeFields) {
         possition = freeFields.get(new Random().nextInt(freeFields.size()));
     }
 }
