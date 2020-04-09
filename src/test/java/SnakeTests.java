@@ -1,5 +1,6 @@
 import de.hhu.snake.Components.Apple;
 import de.hhu.snake.Components.Direction;
+import de.hhu.snake.Components.Gameboard;
 import de.hhu.snake.Components.Possition;
 import de.hhu.snake.Components.Snake;
 import de.hhu.snake.Components.Tail;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes = main.class)
@@ -93,8 +95,20 @@ public class SnakeTests {
         List<Possition> freePossitions = new ArrayList<>();
         freePossitions.add(new Possition(20, 40));
         freePossitions.add(new Possition(80, 60));
-        eve.respawn(freePossitions);
+        eve.spawn(freePossitions);
         assertTrue(new Possition(20, 40).equals(eve.getPossition())
                 || new Possition(80, 60).equals(eve.getPossition()));
+    }
+
+    @Test
+    void createGameboard() {
+        Gameboard board = new Gameboard(200, 200, snake);
+    }
+
+    @Test
+    void spawnAppleGameboard() {
+        Gameboard board = new Gameboard(200, 200, snake);
+        board.spawnApple();
+        assertNotEquals(snake.getPossition(), board.getApple().getPossition());
     }
 }
