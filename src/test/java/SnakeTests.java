@@ -63,28 +63,28 @@ public class SnakeTests {
     void moveSnakeNorth() {
         Snake schroer = new Snake(Direction.EAST, new Possition(100, 100));
         schroer.move(Direction.NORTH);
-        assertTrue(new Possition(100, 100 - STEP_SIZE).equals(schroer.getPossition()));
+        assertEquals(new Possition(100, 100 - STEP_SIZE), schroer.getPossition());
     }
 
     @Test
     void moveSnakeEast() {
         Snake schroer = new Snake(Direction.SOUTH, new Possition(100, 100));
         schroer.move(Direction.EAST);
-        assertTrue(new Possition(100 + STEP_SIZE, 100).equals(schroer.getPossition()));
+        assertEquals(new Possition(100 + STEP_SIZE, 100), schroer.getPossition());
     }
 
     @Test
     void moveSnakeSouth() {
         Snake schroer = new Snake(Direction.WEST, new Possition(100, 100));
         schroer.move(Direction.SOUTH);
-        assertTrue(new Possition(100, 100 + STEP_SIZE).equals(schroer.getPossition()));
+        assertEquals(new Possition(100, 100 + STEP_SIZE), schroer.getPossition());
     }
 
     @Test
     void moveSnakeWest() {
         Snake schroer = new Snake(Direction.NORTH, new Possition(100, 100));
         schroer.move(Direction.WEST);
-        assertTrue(new Possition(100 - STEP_SIZE, 100).equals(schroer.getPossition()));
+        assertEquals(new Possition(100 - STEP_SIZE, 100), schroer.getPossition());
     }
 
     @Test
