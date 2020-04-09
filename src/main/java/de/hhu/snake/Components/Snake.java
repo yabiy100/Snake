@@ -25,8 +25,4 @@ public class Snake {
         direction = toMove;
         possition.move(toMove);
     }
-
-    public boolean isAlive() {
-        return true;
-    }
 }
