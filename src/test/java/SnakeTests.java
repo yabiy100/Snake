@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -110,5 +111,13 @@ public class SnakeTests {
         Gameboard board = new Gameboard(200, 200, snake);
         board.spawnApple();
         assertNotEquals(snake.getPossition(), board.getApple().getPossition());
+    }
+
+    @Test
+    void SnakeIsDead() {
+        Snake conrad = new Snake(Direction.SOUTH, new Possition(0, 60));
+        Gameboard board = new Gameboard(200, 200, conrad);
+        snake.move(Direction.EAST);
+        assertFalse(board.snakeIsAlive());
     }
 }

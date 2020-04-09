@@ -54,4 +54,10 @@ public class Gameboard {
             allPossitions.add(new Possition(length, height));
         }
     }
+
+    public boolean snakeIsAlive() {
+        boolean inLength = snake.getPossition().getX() > 0 && snake.getPossition().getX() < length;
+        boolean inHeight = snake.getPossition().getY() > 0 && snake.getPossition().getY() < height;
+        return inLength && inHeight;
+    }
 }
