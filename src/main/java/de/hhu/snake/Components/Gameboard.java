@@ -1,11 +1,13 @@
 package de.hhu.snake.Components;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 public class Gameboard {
     private int length;
     private int height;
@@ -22,10 +24,19 @@ public class Gameboard {
 
     public void spawnApple() {
         apple.spawn(getFreePossitions());
-
     }
 
-    private List<Possition> getFreePossitions() {
+    public boolean snakeIsAlive() {
+        boolean inLength = snake.getPossition().getX() > 0 && snake.getPossition().getX() < length;
+        boolean inHeight = snake.getPossition().getY() > 0 && snake.getPossition().getY() < height;
+        return inLength && inHeight;
+    }
+
+    public void moveSnake(Direction direction) {
+        snake.move(direction, apple.getPossition());
+    }
+
+    public List<Possition> getFreePossitions() {
         List<Possition> result = listAllPossitions();
         result.remove(snake.getPossition());
         if (snake.getTail() != null) {
@@ -42,7 +53,7 @@ public class Gameboard {
 
     private List<Possition> listAllPossitions() {
         List<Possition> allPossitions = new ArrayList<>();
-        for (int length = 0; length < this.length; length += STEP_SIZE) {
+        for (int length = STEP_SIZE / 2; length < this.length; length += STEP_SIZE) {
             addHeightPossitions(allPossitions, length);
 
         }
@@ -50,14 +61,8 @@ public class Gameboard {
     }
 
     private void addHeightPossitions(List<Possition> allPossitions, int length) {
-        for (int height = 0; height < this.height; height += STEP_SIZE) {
+        for (int height = STEP_SIZE / 2; height < this.height; height += STEP_SIZE) {
             allPossitions.add(new Possition(length, height));
         }
-    }
-
-    public boolean snakeIsAlive() {
-        boolean inLength = snake.getPossition().getX() > 0 && snake.getPossition().getX() < length;
-        boolean inHeight = snake.getPossition().getY() > 0 && snake.getPossition().getY() < height;
-        return inLength && inHeight;
     }
 }
