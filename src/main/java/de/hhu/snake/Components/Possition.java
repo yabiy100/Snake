@@ -37,4 +37,8 @@ public class Possition {
         Possition toCompare = (Possition) o;
         return X == toCompare.getX() && Y == toCompare.getY();
     }
+
+    public Possition copy() {
+        return new Possition(X, Y);
+    }
 }
